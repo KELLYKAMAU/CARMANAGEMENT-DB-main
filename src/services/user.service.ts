@@ -1,5 +1,5 @@
 import * as userRepositories from '../repositories/user.repository'
-import { NewUser, UpdateUser } from '../types/user.types';
+import { User, UpdateUser } from '../types/user.types';
 
 export const listUsers = async () => await userRepositories.getUsers();
 export const getUser = async (id: number) => {
@@ -10,7 +10,7 @@ export const getUser = async (id: number) => {
     return await ensureUserExists(id);
 
 }
-export const createUser = async (user: NewUser) => await userRepositories.createUser(user);
+export const createUser = async (user: User) => await userRepositories.createUser(user);
 
 //export const updateUser = async (id: number, user: any) => await userRepositories.updateUser(id, user);
 export const updateUser = async (id: number, user: UpdateUser) => {

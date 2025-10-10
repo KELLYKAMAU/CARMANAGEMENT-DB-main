@@ -1,5 +1,5 @@
 import { getPool } from '../db/config'
-import { NewUser, UpdateUser, User } from '../types/user.types';
+import { User, UpdateUser } from '../types/user.types';
 
 //get all users
 export const getUsers = async (): Promise<User[]> => {
@@ -19,7 +19,7 @@ export const getUserById = async (id: number): Promise<User[]> => {
 };
 
 //create new user -user: any changed to user: NewUser
-export const createUser = async (user: NewUser) => {
+export const createUser = async (user: any) => {
     const pool = await getPool();
     await pool
         .request()
@@ -31,24 +31,16 @@ export const createUser = async (user: NewUser) => {
     return { message: 'User created successfully' };
 }
 
-/* JSON Example
-{
-    "first_name": "John",
-    "last_name": "Doe",
-    "email": "john@gmail.com",
-    "phone_number": "1234567890"
-}
-*/
 
 //update a user
-export const updateUser = async (id: number, user: UpdateUser) => {
+export const updateUser = async (id: number, User: UpdateUser) => {
     const pool = await getPool();
     await pool
         .request()
         .input('id', id)
-        .input('first_name', user.first_name)
-        .input('last_name', user.last_name)
-        .input('phone_number', user.phone_number)
+        .input('first_name', User.firstName)
+        .input('last_name', User.lastName)
+        .input('phone_number', User.phoneNumber)
         .query('UPDATE Users SET first_name = @first_name, last_name = @last_name, phone_number = @phone_number WHERE userid = @id');
     return { message: 'User updated successfully' };
 }
