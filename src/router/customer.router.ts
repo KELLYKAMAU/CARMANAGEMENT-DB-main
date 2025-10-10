@@ -1,5 +1,5 @@
 import { Express } from "express";
-import * as customercontroller from '../controllers.ts/customer.controller'
+import * as customercontroller from '../controllers/customer.controller'
 
 const customerRoutes = (app: Express) => {
     app.get('/customer', customercontroller.getcustomers);

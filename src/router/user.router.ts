@@ -1,6 +1,6 @@
 
 import { Express } from "express";
-import * as userController from "../controllers.ts/user.controllers";
+import * as userController from "../controllers/user.controllers";
 
 const userRoutes = (app: Express) => {
     app.get("/users", userController.getAllUsers);

@@ -29,10 +29,10 @@ app.get('/users', (req, res) => {
     });
 })
 
-//Fetch todos with minimal error handling
-app.get('/todos', (req, res) => {
+//Fetch customers with minimal error handling
+app.get('/customers', (req, res) => {
     getPool().then(pool => {
-        return pool.request().query('SELECT * FROM Todos');
+        return pool.request().query('SELECT * FROM customers');
     }).then(result => {
         res.json(result.recordset);
     }).catch(err => {
