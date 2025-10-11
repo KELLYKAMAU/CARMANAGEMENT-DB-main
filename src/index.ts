@@ -2,6 +2,8 @@ import express from 'express'
 import sql from 'mssql';
 import dotenv from 'dotenv';
 import { getPool } from './db/config';
+import locationRoutes from './router/location.routes';
+app.use('/api/locations', locationRoutes);
 
 //create express app
 const app = express();
