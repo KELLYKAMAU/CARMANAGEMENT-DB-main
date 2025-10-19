@@ -5,16 +5,17 @@
 USE CarManagementDB;
 GO
 
--- USERS (for authentication/authorization)
-IF OBJECT_ID('dbo.Users', 'U') IS NOT NULL DROP TABLE dbo.Users;
-CREATE TABLE dbo.Users (
-    Id INT IDENTITY(1,1) PRIMARY KEY,
-    Email NVARCHAR(256) NOT NULL UNIQUE,
-    PasswordHash NVARCHAR(255) NOT NULL,
-    FirstName NVARCHAR(100) NOT NULL,
-    LastName NVARCHAR(100) NOT NULL,
-    Role NVARCHAR(50) NOT NULL DEFAULT 'USER',
-    CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME()
+-- users (for authentication/authorization)
+CREATE TABLE dbo.users(
+    user_id INT IDENTITY(1,1) PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    user_name  VARCHAR(50) UNIQUE NOT NULL,
+    email_address VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    phone_number VARCHAR(13) UNIQUE NOT NULL,
+    role VARCHAR(20) DEFAULT('user')
+    
 );
 
 -- CARS

@@ -2,9 +2,9 @@ import { getPool } from "../db/config";
 import { newUser } from "../types/users.types";
 import bcrypt from 'bcrypt';
 
-export const getUsers = async () => {
+export const getusers = async () => {
     const pool = await getPool();
-    const result = await pool.request().query('SELECT * FROM Users');
+    const result = await pool.request().query('SELECT * FROM users');
     return result.recordset;
 }
 
@@ -21,9 +21,8 @@ export const insertUser = async (user: newUser) => {
         .input('user_name', user.user_name)
         .input('password', user.password)
         .input('email_address', user.email_address)
-        .input('phone_number', user.phone_number)
         .input('role', user.role || 'user') // Default role is 'user'
-        .query('INSERT INTO Users (first_name, last_name, user_name, password, email_address, phone_number, role) VALUES (@first_name, @last_name, @user_name, @password, @email_address, @phone_number, @role)');
+        .query('INSERT INTO users (first_name, last_name, user_name, password, email_address, , role) VALUES (@first_name, @last_name, @user_name, @password, @email_address, @, @role)');
         
     return { message: 'User created successfully' };
 }   ;
@@ -33,7 +32,7 @@ export const getUserByEmailAddress = async (email_address: string) => {
     const pool = await getPool();
     const result = await pool.request()
         .input('email_address', email_address)
-        .query('SELECT * FROM Users WHERE email_address = @email_address');
+        .query('SELECT * FROM users WHERE email_address = @email_address');
     return result.recordset[0] || null;    
 }
 
@@ -42,13 +41,13 @@ export const setVerificationCode = async (email_address: string, code: string) =
     await pool.request()
         .input('email_address', email_address)
         .input('verification_code', code)
-        .query('UPDATE Users SET verification_code = @verification_code WHERE email_address = @email_address');
+        .query('UPDATE users SET verification_code = @verification_code WHERE email_address = @email_address');
 }
 export const verifyUserEmail = async (email_address: string) => {
     const pool = await getPool();
     const result = await pool.request()
         .input('email_address', email_address)
-        .query('UPDATE Users SET is_verified = 1, verification_code = NULL WHERE email_address = @email_address');
+        .query('UPDATE users SET is_verified = 1, verification_code = NULL WHERE email_address = @email_address');
     return result.recordset[0] || null;
 }
 
@@ -56,5 +55,5 @@ export const deleteUserByEmailAddress = async (email_address: string) => {
     const pool = await getPool();
     await pool.request()
         .input('email_address', email_address)
-        .query('DELETE FROM Users WHERE email_address = @email_address');
+        .query('DELETE FROM users WHERE email_address = @email_address');
 }

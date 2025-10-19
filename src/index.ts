@@ -20,6 +20,10 @@ bookingRoutes(app);
 locationRouter(app);
 userRoutes(app);
 
+app.get("/", (req, res) => {
+  res.send("Welcome to Car Management System API");
+})
+
 
 
 

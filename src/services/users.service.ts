@@ -10,8 +10,8 @@ dotenv.config();
 
 
 
-export const getAllUsers = async () => {
-    return await userRepository.getUsers();
+export const getAllusers = async () => {
+    return await userRepository.getusers();
 }
 
 export const insertUser = async (userData: newUser) => {

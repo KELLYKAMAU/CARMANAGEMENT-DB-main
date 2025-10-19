@@ -4,7 +4,7 @@ import { createCustomerDTO, updateCustomerDTO } from "../types/customer.types";
 
 export const getAllCustomers = async () => {
     const pool = await getPool();
-    const result = await pool.request().query("SELECT * FROM Customer");
+    const result = await pool.request().query("SELECT * FROM Customers");
     return result.recordset;
 }
 
@@ -25,7 +25,7 @@ export const createCustomer= async(customerData:createCustomerDTO)=>{
         .input('email', customerData.email)
         .input('phone_number', customerData.phone_number)
         .input('address', customerData.address)
-        .query('INSERT INTO Customer (firstName, lastName, email, phone_number, address) VALUES (@firstName, @lastName, @email, @phone_number, @address)')
+        .query('INSERT INTO Customers (firstName, lastName, email, phone_number, address) VALUES (@firstName, @lastName, @email, @phone_number, @address)')
     return result.recordset;
 }
 

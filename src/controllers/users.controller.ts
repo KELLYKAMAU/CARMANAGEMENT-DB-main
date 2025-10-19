@@ -1,11 +1,11 @@
-import * as userService from '../services/users.service';
+import * as userservice from '../services/users.service';
 
 import { Request, Response } from 'express';
 
 
-export const getAllUsers = async (_req: Request, res: Response) => {
+export const getAllusers = async (_req: Request, res: Response) => {
     try {
-        const users = await userService.getAllUsers();
+        const users = await userservice.getAllusers();
         res.status(200).json(users);
     } catch (error:any) {
         res.status(500).json({ error: "Internal Server Error", details: error.message });
@@ -17,7 +17,7 @@ export const createUser = async (req:Request, res:Response) => {
 
   try {
 
-    const newUser = await userService.insertUser(userData);
+    const newUser = await userservice.insertUser(userData);
     res.status(201).json({message: 'User created successfully', user: newUser});
     
 } catch (error:any) {
@@ -38,7 +38,7 @@ export const verifyEmail = async (req:Request, res:Response) => {
     const { email_address, code } = req.body;
 
     try {
-        const result = await userService.verifyEmail(email_address, code);
+        const result = await userservice.verifyEmail(email_address, code);
         res.status(200).json(result);
     } catch (error:any) {
         if(error.message === "User not found") {
@@ -54,7 +54,7 @@ export const verifyEmail = async (req:Request, res:Response) => {
 export const loginUser = async (req:Request, res:Response) => {
     const { email_address, password } = req.body;   
     try {
-        const result = await userService.loginUser(email_address, password);
+        const result = await userservice.loginUser(email_address, password);
         res.status(200).json(result);
     }   catch (error:any) {
         if(error.message === "Email and password are required") {
@@ -74,7 +74,7 @@ export const loginUser = async (req:Request, res:Response) => {
 export const deleteUser = async (req:Request, res:Response) => {
     const { email_address } = req.params;
     try {
-        const result = await userService.deleteUser(email_address);
+        const result = await userservice.deleteUser(email_address);
         res.status(200).json(result);
     } catch (error:any) {
         if(error.message === "User not found") {
