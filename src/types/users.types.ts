@@ -1,4 +1,5 @@
 export interface newUser {
+    role: string;
     first_name: string;
     last_name: string;
     user_name: string;
