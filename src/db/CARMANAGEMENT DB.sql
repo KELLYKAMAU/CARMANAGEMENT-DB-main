@@ -5,8 +5,8 @@
 USE CarManagementDB;
 GO
 
--- users (for authentication/authorization)
-CREATE TABLE dbo.users(
+-- Users (for authentication/authorization)
+CREATE TABLE dbo.Users(
     user_id INT IDENTITY(1,1) PRIMARY KEY,
     first_name VARCHAR(50) NOT NULL,
     last_name VARCHAR(50) NOT NULL,
@@ -36,11 +36,11 @@ CREATE TABLE dbo.Cars (
 IF OBJECT_ID('dbo.Customers', 'U') IS NOT NULL DROP TABLE dbo.Customers;
 CREATE TABLE dbo.Customers (
     Id INT IDENTITY(1,1) PRIMARY KEY,
-    FirstName NVARCHAR(100) NOT NULL,
-    LastName NVARCHAR(100) NOT NULL,
-    Email NVARCHAR(256) NOT NULL UNIQUE,
-    PhoneNumber NVARCHAR(30) NULL,
-    Address NVARCHAR(255) NULL,
+    first_name NVARCHAR(100) NOT NULL,
+    last_name NVARCHAR(100) NOT NULL,
+    email NVARCHAR(256) NOT NULL UNIQUE,
+    phone_number NVARCHAR(30) NULL,
+    address NVARCHAR(255) NULL,
     CreatedAt DATETIME2 NOT NULL DEFAULT SYSUTCDATETIME(),
     UpdatedAt DATETIME2 NULL
 );
@@ -50,7 +50,7 @@ IF OBJECT_ID('dbo.Locations', 'U') IS NOT NULL DROP TABLE dbo.Locations;
 CREATE TABLE dbo.Locations (
     Id INT IDENTITY(1,1) PRIMARY KEY,
     Name NVARCHAR(100) NOT NULL,
-    Address NVARCHAR(255) NOT NULL,
+    address NVARCHAR(255) NOT NULL,
     ContactNumber NVARCHAR(30) NULL
 );
 
@@ -82,14 +82,14 @@ VALUES ('Civic','Honda',2022,'Blue',45.50,1),
        ('CX-5','Mazda',2020,'Black',60.00,1),
        ('A4','Audi',2019,'Grey',70.00,1);
 
-INSERT INTO dbo.Customers (FirstName, LastName, Email, PhoneNumber, Address)
+INSERT INTO dbo.Customers (first_name, last_name, email, phone_number, address)
 VALUES ('Jane','Doe','jane.doe@example.com','+254700000000','Nairobi'),
        ('John','Smith','john.smith@example.com','+254711111111','Thika'),
        ('Mary','Wanjiru','mary.w@example.com','+254722222222','Nyeri'),
        ('Paul','Otieno','paul.o@example.com','+254733333333','Kisumu'),
        ('Amina','Hassan','amina.h@example.com','+254744444444','Mombasa');
 
-INSERT INTO dbo.Locations (Name, Address, ContactNumber)
+INSERT INTO dbo.Locations (Name, address, ContactNumber)
 VALUES ('CBD Branch','Kenyatta Ave, Nairobi','+254722222222'),
        ('Westlands Branch','Waiyaki Way, Nairobi','+254733333333');
 

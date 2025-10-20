@@ -5,7 +5,7 @@ import { Request, Response } from 'express';
 
 export const getAllusers = async (_req: Request, res: Response) => {
     try {
-        const users = await userservice.getAllusers();
+        const users = await userservice.getAllUsers();
         res.status(200).json(users);
     } catch (error:any) {
         res.status(500).json({ error: "Internal Server Error", details: error.message });

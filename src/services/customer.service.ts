@@ -8,9 +8,9 @@ export const listAllCustomers = async () => {
 
 export const getCustomerDetails = async (id: number) => {
     if (isNaN(id) || id <= 0) {
+        console.log("Service Log:", id);
         throw new Error("Invalid ID");
     }
-
     const customer = await customerRepositories.getCustomerById(id);
     if (!customer) {
         throw new Error("Customer not found");

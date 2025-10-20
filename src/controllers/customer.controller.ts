@@ -50,12 +50,14 @@ export const updateCustomer = async (req: Request, res: Response) => {
         res.status(200).json({ message: "Customer updated successfully", customer: updatedCustomer });
     } catch (error: any) {
         if (error.message === "Invalid ID") {
-            return res.status(400).json({ error: error.message });
+            return error;
+            // return res.status(400).json({ error: error.message });
         }
         if (error.message === "Customer not found") {
             res.status(404).json({ error: error.message });
         } else {
-            res.status(500).json({ error: "Internal Server Error" });
+            // res.status(500).json({ error: "Internal Server Error" });
+            return error;
         }
     }
 }
