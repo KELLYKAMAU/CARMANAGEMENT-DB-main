@@ -3,9 +3,10 @@ export interface newUser {
     first_name: string;
     last_name: string;
     user_name: string;
-    password: string;
+    PasswordHash: string;
     email_address: string;    
-    phone_number: string;    
+    phone_number: string;  
+    user_id?: number;   
 }
 export interface updateUser {
     first_name?: string;
